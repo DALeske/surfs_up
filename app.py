@@ -4,6 +4,7 @@ import numpy as np
 import pandas as pd
 
 import sqlalchemy
+
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
@@ -12,7 +13,8 @@ from flask import Flask, jsonify
 
 
 # Set up the database
-engine = create_engine("sqlite:///hawaii.sqlite")
+engine = create_engine("sqlite:///hawaii.sqlite", connect_args= {'check_same_thread' : False})
+#engine = create_engine("sqlite:///hawaii.sqlite")
 
 # Reflect the database into classes
 Base = automap_base()
@@ -36,11 +38,11 @@ app = Flask(__name__)
 def welcome():
     return(
     '''
-    Welcome to the Climate Analysis API!
-    Available Routes:
-    /api/v1.0/precipitation
-    /api/v1.0/stations
-    /api/v1.0/tobs
+    Welcome to the Climate Analysis API!<br/>
+    Available Routes:<br/>
+    /api/v1.0/precipitation<br/>
+    /api/v1.0/stations<br/>
+    /api/v1.0/tobs<br/>
     /api/v1.0/temp/start/end
     ''')
 
